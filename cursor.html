@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <style>
+            body {
+                margin: 0;
+                height: 100vh;
+                background: black;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-family: monospace;
+                font-size: 48px;
+                color: white;
+            }
+
+            /* cursor element (simple blinking caret) */
+            #cursor {
+                display: inline-block;
+                white-space: pre; /* preserve spacing when appending */
+                animation: blink 1s steps(1, end) infinite;
+            }
+
+            @keyframes blink {
+                50% { opacity: 0; }
+            }
+        </style>
+    </head>
+    <body>
+        <div id="cursor">|</div>
+        <script>
+            const cursor = document.getElementById('cursor');
+            const text = "HELLO HUMAN";
+            let i = 0;
+
+            // safety: ensure element exists and text is non-empty
+            if (cursor && text.length > 0) {
+                setInterval(() => {
+                    // append next character
+                    cursor.textContent += text[i++];
+                    // if we've shown the whole string, reset to just the caret
+                    if (i === text.length) {
+                        i = 0;
+                        cursor.textContent = "|";
+                    }
+                }, 200);
+            }
+        </script>
+    </body>
+</html>
+
+
+
+
+
